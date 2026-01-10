@@ -1,0 +1,64 @@
+{
+  "math": {
+    "addition": [
+      {
+        "question": "7 + 8 = ?",
+        "options": [
+          "14",
+          "15",
+          "16",
+          "17"
+        ],
+        "answer": "15"
+      },
+      {
+        "question": "12 + 9 = ?",
+        "options": [
+          "19",
+          "20",
+          "21",
+          "22"
+        ],
+        "answer": "21"
+      }
+    ],
+    "subtraction": [
+      {
+        "question": "15 − 7 = ?",
+        "options": [
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "answer": "8"
+      }
+    ]
+  },
+  "vocab_es_en": {
+    "lesson_1": [
+      {
+        "question": "Translate: 'perro'",
+        "options": [
+          "cat",
+          "bird",
+          "dog",
+          "mouse"
+        ],
+        "answer": "dog"
+      }
+    ],
+    "lesson_2": [
+      {
+        "question": "Translate to Spanish: 'house'",
+        "options": [
+          "casa",
+          "hogar",
+          "hotel",
+          "habitación"
+        ],
+        "answer": "casa"
+      }
+    ]
+  }
+}

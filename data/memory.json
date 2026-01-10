@@ -1,0 +1,70 @@
+{
+  "emoji": {
+    "animals": [
+      {
+        "symbol": "🍄",
+        "name": "Mushroom"
+      },
+      {
+        "symbol": "🐶",
+        "name": "Dog"
+      },
+      {
+        "symbol": "🐱",
+        "name": "Cat"
+      },
+      {
+        "symbol": "🦊",
+        "name": "Fox"
+      },
+      {
+        "symbol": "🦁",
+        "name": "Lion"
+      }
+    ],
+    "objects": [
+      {
+        "symbol": "⚽",
+        "name": "Soccer Ball"
+      },
+      {
+        "symbol": "🎵",
+        "name": "Music"
+      },
+      {
+        "symbol": "📚",
+        "name": "Books"
+      },
+      {
+        "symbol": "⌚",
+        "name": "Watch"
+      },
+      {
+        "symbol": "🔑",
+        "name": "Key"
+      }
+    ],
+    "food": [
+      {
+        "symbol": "🍎",
+        "name": "Apple"
+      },
+      {
+        "symbol": "🍌",
+        "name": "Banana"
+      },
+      {
+        "symbol": "🍇",
+        "name": "Grapes"
+      },
+      {
+        "symbol": "🍔",
+        "name": "Burger"
+      },
+      {
+        "symbol": "☕",
+        "name": "Coffee"
+      }
+    ]
+  }
+}

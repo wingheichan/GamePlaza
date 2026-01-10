@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Playground+ — Quiz • Memory • Fill-in • High Scores</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="dark">
+  <header class="app-header" role="banner">
+    <h1>🎮 Playground+</h1>
+    <p class="subtitle">Quizzes • Memory Cards • Fill-in-the-Blank • High Scores</p>
+    <div id="env-warning" class="env-warning" hidden>
+      ⚠️ Data couldn’t be loaded. Please run this site via a local server (e.g.,
+      <code>python3 -m http.server</code>) instead of opening <code>index.html</code> directly.
+    </div>
+    <div class="global-controls" aria-label="Global controls">
+      <button id="toggle-sound" class="secondary">🔊 Sound: On</button>
+      <button id="toggle-theme" class="secondary">🌓 Theme: Dark</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="navigation" aria-label="Game selector">
+    <button class="tab active" data-target="quiz">🧠 Quiz</button>
+    <button class="tab" data-target="memory">🃏 Memory</button>
+    <button class="tab" data-target="gaps">✍️ Fill-in</button>
+    <button class="tab" data-target="scores">🏆 High Scores</button>
+  </nav>
+
+  <main>
+    <!-- QUIZ -->
+    <section id="quiz" class="panel active" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">🧠 Quiz</h2>
+      <div class="filters">
+        <label>Category <select id="quiz-cat"></select></label>
+        <label>Subcategory <select id="quiz-sub"></select></label>
+        <button id="quiz-load" class="secondary">Load set ⤳</button>
+        <button id="quiz-preview" class="secondary">Preview (Q&A) 👁️</button>
+      </div>
+      <div class="gamecard">
+        <div id="quiz-meta" class="meta"></div>
+        <div id="quiz-timer" class="meta timer" aria-live="polite"></div>
+        <div id="quiz-question" class="question" aria-live="polite"></div>
+        <ul id="quiz-options" class="options" role="list"></ul>
+        <div id="quiz-feedback" class="feedback" aria-live="polite"></div>
+        <div class="controls">
+          <button id="quiz-next" class="primary">Next ▶</button>
+          <button id="quiz-restart" class="secondary">Restart ↺</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORY -->
+    <section id="memory" class="panel" aria-labelledby="memory-title">
+      <h2 id="memory-title">🃏 Memory Cards</h2>
+      <div class="filters">
+        <label>Category <select id="mem-cat"></select></label>
+        <label>Subcategory <select id="mem-sub"></select></label>
+        <label>Mode
+          <select id="mem-mode">
+            <option value="1">Mode 1 — All closed</option>
+            <option value="2">Mode 2 — Show all for 10s, then close</option>
+            <option value="3">Mode 3 — All open</option>
+          </select>
+        </label>
+        <button id="mem-load" class="secondary">Load deck ⤳</button>
+      </div>
+      <div class="gamecard">
+        <div class="meta">
+          <span>Moves: <strong id="mem-moves">0</strong></span>
+          <span>Matches: <strong id="mem-matches">0</strong></span>
+          <span>Score: <strong id="mem-score">0</strong></span>
+        </div>
+        <div id="mem-timer" class="meta timer" aria-live="polite"></div>
+        <div id="memory-grid" class="grid grid-5x4" aria-live="polite" aria-label="Memory grid"></div>
+        <div id="memory-status" class="feedback" aria-live="polite"></div>
+        <div class="controls">
+          <button id="mem-start" class="primary">Start ▶</button>
+          <button id="mem-restart" class="secondary">Restart ↺</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILL-IN -->
+    <section id="gaps" class="panel" aria-labelledby="gaps-title">
+      <h2 id="gaps-title">✍️ Fill-in-the-Blank</h2>
+      <div class="filters">
+        <label>Category <select id="gap-cat"></select></label>
+        <label>Subcategory <select id="gap-sub"></select></label>
+        <button id="gap-load" class="secondary">Load set ⤳</button>
+        <button id="gap-preview" class="secondary">Preview (Q&A) 👁️</button>
+      </div>
+      <div class="gamecard">
+        <div id="gap-hint" class="meta"></div>
+        <div class="meta"><span>Score: <strong id="gap-score">0</strong></span></div>
+        <div id="gap-timer" class="meta timer" aria-live="polite"></div>
+        <p id="gap-sentence" class="question" aria-live="polite"></p>
+        <label for="gap-input" class="sr-only">Type the missing word</label>
+        <input id="gap-input" type="text" placeholder="Type the missing word…" autocomplete="off" />
+        <div id="gap-feedback" class="feedback" aria-live="polite"></div>
+        <div class="controls">
+          <button id="gap-check" class="primary">Check ✅</button>
+          <button id="gap-next" class="secondary">Next ▶</button>
+          <button id="gap-restart" class="secondary">Restart ↺</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGH SCORES -->
+    <section id="scores" class="panel" aria-labelledby="scores-title">
+      <h2 id="scores-title">🏆 High Scores</h2>
+      <div class="filters">
+        <label>Game
+          <select id="hs-game">
+            <option value="all">All</option>
+            <option value="quiz">Quiz</option>
+            <option value="memory">Memory</option>
+            <option value="gaps">Fill-in</option>
+          </select>
+        </label>
+        <label>Category <input id="hs-cat" type="text" placeholder="(optional)" /></label>
+        <button id="hs-refresh" class="secondary">Refresh ↺</button>
+        <button id="hs-clear" class="danger">Clear all ⛔</button>
+      </div>
+      <div class="gamecard">
+        <div class="meta">Scores are saved locally in your browser (localStorage).</div>
+        <table id="scores-table" class="scores-table">
+          <thead>
+            <tr><th>Score</th><th>Game</th><th>Category</th><th>Subcat</th><th>Mode</th><th>Correct/Total</th><th>Date</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Preview Modal -->
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-title">Preview</h3>
+        <button id="modal-close" class="secondary">✖ Close</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer" role="contentinfo">
+    <p>Scoring: <code>score = (50 × correct) + (51 − time)</code> per correct item. Customize data in <code>/data</code>.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

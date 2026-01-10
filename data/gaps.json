@@ -1,0 +1,25 @@
+{
+  "geography": {
+    "capitals": [
+      {
+        "text": "The capital of France is ___.",
+        "answer": "Paris",
+        "hint": "European capitals"
+      },
+      {
+        "text": "The capital of Japan is ___.",
+        "answer": "Tokyo",
+        "hint": "Asian capitals"
+      }
+    ]
+  },
+  "english": {
+    "antonyms": [
+      {
+        "text": "The opposite of 'cold' is ___.",
+        "answer": "hot",
+        "hint": "Antonyms"
+      }
+    ]
+  }
+}
